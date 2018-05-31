@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +11,21 @@ export class NavbarComponent implements OnInit {
 
   username="Beefeater";
 
-  constructor() { }
+  constructor(@Inject("auth") private auth) { }
 
   ngOnInit() {
+
   }
 
+  login(): void {
+    this.auth.login();
+  }
+
+  logout(): void {
+    this.auth.logout();
+  }
+
+  isAuthenticated(): boolean {
+    return this.auth.isAuthenticated();
+  }
 }
